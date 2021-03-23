@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+*,
+*:after,
+*:before
+{
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+
+/* Для начала установим 3D-перспективу для внешнего блока, добавив ему таким образом глубину. Чем больше значение перспективы, тем меньше выражен эффект глубины. Для выравнивания по центру страницы зададим блоку ширину и поля */
+.container {
+  text-align: center;
+  width: 685px;
+  margin: 20px auto;
+  -webkit-perspective: 1200;
+  perspective: 1200;
+  -moz-transform: perspective(1200px);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* Внутреннему блоку назначим transform-style: preserve-3d, чтобы дочерние элементы также позиционировались в трехмерном пространстве */
+.flipper {
+  position: relative;
+  width: 685px;
+  height: 600px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: .9s linear;
+  -moz-transition: .9s linear;
+  -o-transition: .9s linear;
+  transition: .9s linear;
+}
+
+/* Для лицевой и оборотной стороны карточки зададим backface-visibility: hidden, чтобы скрыть каждую из сторон при повороте. */
+.front, .back {
+  font-family: 'Kaushan', sans-serif;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  box-sizing: border-box;
+  padding: 230px 20px 20px;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.front {
+  z-index: 2;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  background: white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #f5f5f5;
+}
+i {
+    color: #DCB8B2;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+h3 {
+  font-size: 25px;
+  line-height: 20px;
+  text-transform: uppercase;
+  margin: 0 0 15px;
+}
+p {
+  font-size: 20px;
+  line-height: 25px;
+}
+.header h3 {
+  color: #18191a;
+}
+.front p {
+  color: #818285;
+}
+
+/* Отразим зеркально оборотную сторону, чтобы при вращении содержимое внутри блока отображалось слева направо */
+.back {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  background: #DCB8B2;
+  color: white;
+}
+.back h3 {
+  position: relative;
+}
+.back h3:after {
+  content: "";
+  width: 100px;
+  height: 3px;
+  position: absolute;
+  bottom: -20px;
+  left: 38%;
+  background: white;
+  margin-left: 25px;
+}
+.back p {
+  padding-top: 20px;
+}
+
+/* Добавим поворот на 180 градусов при наведении */
+.container:hover .flipper {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+
+.backto {
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+    padding: 15px 40px;
+}
+
+.backto i{
+    font-size: 50px;
+
+    transition: .3 linear;
+}
+
+.backto i:hover {
+    text-shadow: -2px 0 #9b7e7a, 0 2px #9b7e7a, 2px 0 #9b7e7a, 0 -2px #9b7e7a; color: #DCB8B2;
+}
